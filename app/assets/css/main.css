@@ -1,0 +1,414 @@
+/* ============================================================
+   main.css — La Seda · Estilos Globales Optimizados
+   Ubicación: assets/css/main.css
+   ============================================================ */
+
+@font-face {
+  font-family: 'Mofiwe';
+  src: url('@/assets/fonts/Mofiwe-Regular.ttf') format('truetype'),
+       url('@/assets/fonts/Mofiwe-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────
+   @layer base — Estilos de etiquetas nativas
+   ────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    @apply scroll-smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply font-sans bg-[#FDFBF9] text-[#27252B];
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif leading-tight;
+  }
+
+  p {
+    @apply text-[17px] md:text-[19px] leading-[1.85] text-[#27252B]/80;
+  }
+
+  .text-base {
+    @apply text-[17px] md:text-[18px] !important;
+  }
+
+  .text-lg {
+    @apply text-[18px] md:text-[20px] !important;
+  }
+
+  .text-xl {
+    @apply text-[21px] md:text-[24px] !important;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#71B1A5];
+  }
+
+  img, video {
+    @apply max-w-full;
+  }
+
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans  { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  header {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   @layer components — Componentes corporativos reutilizables
+   ────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ════════════════════════════════════════════════════════
+     SECCIÓN: Tokens de layout y sección
+     ════════════════════════════════════════════════════════ */
+  .section-label {
+    @apply text-[#71B1A5] text-xs tracking-[0.4em] uppercase font-medium;
+  }
+
+  .section-divider {
+    @apply w-6 h-px bg-[#71B1A5];
+  }
+
+  .section-title {
+    @apply font-serif italic font-light text-[2rem] md:text-[2.6rem] leading-[1.15];
+  }
+
+  .section-title-accent {
+    @apply not-italic font-normal text-[#71B1A5];
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-5 md:px-8 lg:px-16;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     NUEVA SECCIÓN DE BOTONES UNIFICADOS (Estilo Píldora Premium)
+     ════════════════════════════════════════════════════════ */
+  
+  /* Base común para todos los botones del ecosistema */
+  .btn-premium-base {
+    @apply relative inline-flex items-center justify-center gap-3
+           px-8 py-4 md:min-w-[210px] text-[10.5px] tracking-[0.28em] uppercase font-bold 
+           rounded-full transition-all duration-500 transform hover:-translate-y-0.5 
+           overflow-hidden w-full sm:w-auto text-center select-none;
+  }
+
+  /* Botón Primario: Sólido Antracita / Hover Corporativo Verde */
+  .btn-primary {
+    @apply btn-premium-base bg-[#27252B] text-white border border-transparent
+           shadow-lg shadow-[#27252B]/5 hover:bg-[#71B1A5] hover:shadow-xl hover:shadow-[#71B1A5]/20;
+  }
+
+  /* Botón Secundario: Contraste Cristal con borde sutil */
+  .btn-secondary {
+    @apply btn-premium-base border border-[#27252B]/30 bg-[#FDFBF9]/60 backdrop-blur-md text-[#27252B]
+           shadow-sm hover:border-[#71B1A5] hover:text-[#71B1A5] hover:bg-white/90 hover:shadow-xl hover:shadow-[#71B1A5]/10;
+  }
+
+  /* Clases simplificadas que antes duplicaban código */
+  .btn-shimmer, .btn-cta-hero, .btn-reserve {
+    @apply btn-primary;
+  }
+
+  /* Redes sociales y Utilidades */
+  .whatsapp-btn {
+    @apply inline-flex items-center gap-2.5 bg-[#25D366]/10 text-[#128C4E] border border-[#25D366]/25 px-4 py-2.5 text-xs tracking-[0.12em] uppercase font-medium hover:bg-[#25D366]/20 hover:border-[#25D366]/50 transition-all duration-300 rounded-full;
+  }
+
+  .social-icon-btn {
+    @apply w-9 h-9 border border-[#27252B]/15 flex items-center justify-center text-[#27252B]/40 hover:border-[#71B1A5] hover:text-[#71B1A5] transition-all duration-300 rounded-full;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SECCIÓN: Formularios
+     ════════════════════════════════════════════════════════ */
+  .form-field { @apply space-y-2; }
+  .form-label { @apply block text-xs font-medium text-[#27252B] tracking-[0.18em] uppercase; }
+  .input-field {
+    @apply w-full border border-[#27252B]/15 bg-[#FDFBF9] px-5 py-3.5 text-sm text-[#27252B] placeholder-[#27252B]/30 font-light focus:outline-none focus:border-[#71B1A5] transition-colors duration-300;
+  }
+  .form-error { @apply text-xs text-red-500 font-light mt-1; }
+
+  /* ════════════════════════════════════════════════════════
+     SECCIÓN: Contacto, Equipo y Formaciones
+     ════════════════════════════════════════════════════════ */
+  .contact-icon-wrap { @apply w-11 h-11 bg-[#71B1A5]/10 flex items-center justify-center flex-shrink-0 mt-0.5; }
+  .contact-item-label { @apply text-xs font-medium text-[#27252B] tracking-[0.18em] uppercase mb-2; }
+  .contact-icon-circle { @apply w-9 h-9 bg-[#71B1A5]/10 flex items-center justify-center shrink-0 rounded-full; }
+  .contact-divider { @apply h-px bg-[#27252B]/10; }
+  .contact-card { @apply bg-white border border-[#27252B]/10 p-8 space-y-6; }
+  .cta-box-dark { @apply bg-[#27252B] p-9 md:p-10; }
+
+  .team-card {
+    @apply bg-[#FDFBF9] overflow-hidden flex flex-col sm:flex-row border border-[#27252B]/10 hover:border-[#71B1A5]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#71B1A5]/5;
+  }
+  .team-card-badge { @apply absolute top-4 left-4 text-white text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 font-medium; }
+  .team-card-role { @apply text-[#71B1A5] text-[10px] tracking-[0.22em] uppercase font-medium; }
+  .team-card-link { @apply text-xs tracking-[0.18em] uppercase text-[#27252B] border-b border-[#27252B]/30 pb-0.5 hover:border-[#71B1A5] hover:text-[#71B1A5] transition-colors duration-200; }
+
+  .training-card { @apply bg-[#FDFBF9] overflow-hidden flex flex-col border border-[#27252B]/10 hover:border-[#71B1A5]/50 transition-colors duration-300; }
+  .training-tag { @apply text-[10px] tracking-[0.2em] uppercase bg-[#71B1A5]/10 text-[#71B1A5] px-2.5 py-1 font-medium; }
+  .formation-label { @apply text-[#71B1A5] text-xs font-medium tracking-[0.35em] uppercase; }
+  .formation-title-dark { @apply font-serif italic text-white text-3xl md:text-4xl leading-[1.2]; }
+  .formation-title-light { @apply font-serif italic text-[#27252B] text-3xl md:text-4xl leading-[1.2]; }
+  
+  .logistics-row { @apply flex items-start justify-between px-6 py-5 gap-6; }
+  .logistics-label { @apply text-sm text-white/50 font-light shrink-0; }
+  .logistics-value { @apply text-sm text-white font-medium; }
+  
+  .prof-avatar-sm { @apply w-11 h-11 overflow-hidden flex-shrink-0 bg-[#71B1A5]/10; }
+  .prof-avatar-lg { @apply w-14 h-14 overflow-hidden flex-shrink-0 bg-[#71B1A5]/10; }
+  .prof-name { @apply text-sm font-semibold text-[#27252B] leading-tight; }
+  .prof-role { @apply text-[0.7rem] text-[#71B1A5] mt-0.5 tracking-wide leading-snug; }
+  .prof-card-body { @apply border-t border-[#27252B]/10 pt-5; }
+  .prof-bio { @apply text-sm text-[#27252B]/60 font-light leading-[1.85]; }
+
+  /* ════════════════════════════════════════════════════════
+     SECCIÓN: Beneficios, Procesos y Terapias
+     ════════════════════════════════════════════════════════ */
+  .benefit-card { @apply p-9 bg-[#27252B] hover:bg-white/5 transition-colors duration-300; }
+  .benefit-number { @apply font-serif italic text-[#71B1A5]/25 text-6xl leading-none block mb-5 select-none group-hover:text-[#71B1A5]/45 transition-colors duration-300; }
+  .benefit-title { @apply text-white font-medium text-base md:text-lg mb-4 leading-snug; }
+  .benefit-desc { @apply text-white/55 text-sm md:text-base leading-[1.9] font-light; }
+  .process-number { @apply font-serif italic text-[#71B1A5]/20 text-7xl leading-none block mb-6 select-none; }
+
+  .date-row { @apply grid md:grid-cols-12 gap-4 md:gap-6 items-center px-6 md:px-8 py-7 md:py-9 hover:bg-white transition-colors duration-200; }
+  .date-day { @apply font-serif italic text-[#71B1A5] text-4xl md:text-5xl leading-none; }
+  .work-area-row { @apply flex items-start gap-5 px-6 py-6 hover:bg-[#71B1A5]/5 transition-colors duration-150; }
+  .work-area-number { @apply font-serif italic text-[#71B1A5]/40 text-3xl leading-none select-none mt-0.5 shrink-0 w-8; }
+
+  .service-tag { @apply text-xs tracking-[0.2em] uppercase bg-[#71B1A5]/10 text-[#71B1A5] px-3 py-1.5 font-medium; }
+  .therapy-card { @apply block bg-white border border-[#27252B]/10 overflow-hidden hover:border-[#71B1A5]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#71B1A5]/10; }
+  .therapy-card-body { @apply p-5; }
+  .therapy-card-category { @apply text-xs tracking-[0.2em] uppercase text-[#71B1A5] font-medium mb-1; }
+  .therapy-card-link { @apply text-xs tracking-[0.15em] uppercase text-[#27252B]/45 mt-3 flex items-center gap-2 group-hover:text-[#71B1A5] transition-colors duration-200; }
+
+  /* ════════════════════════════════════════════════════════
+     SECCIÓN: Navegación, Heros y Animaciones
+     ════════════════════════════════════════════════════════ */
+  .nav-back-link { @apply inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-[#27252B]/50 hover:text-[#71B1A5] transition-colors duration-200; }
+  .nav-back-link-dark { @apply inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-white/40 hover:text-white transition-colors duration-200; }
+  .nav-link-back { @apply inline-flex items-center gap-4; }
+  .nav-link-line { @apply w-10 h-px bg-[#27252B]/40 group-hover:w-16 group-hover:bg-[#71B1A5] transition-all duration-300; }
+  .nav-link-text { @apply text-sm tracking-[0.22em] uppercase text-[#27252B]/50 group-hover:text-[#71B1A5] transition-colors duration-200; }
+
+  .hero-item {
+    opacity: 0;
+    animation: heroFadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .scroll-line {
+    animation: scrollPulse 2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  /* Marquee de Testimonios */
+  .marquee-wrapper { width: 100%; overflow: hidden; }
+  .marquee-track { display: flex; gap: 16px; width: max-content; animation: marquee-ltr var(--duration, 55s) linear infinite; }
+  .marquee-reverse .marquee-track { animation-name: marquee-rtl; }
+  .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
+
+  .testimonial-card {
+    position: relative; flex-shrink: 0; width: 300px; background: #fff; border: 1px solid rgba(39, 37, 43, 0.07); border-top: 2px solid #71B1A5; padding: 28px 28px 24px; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1); overflow: hidden;
+  }
+  .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(113, 177, 165, 0.12); }
+  .testimonial-card--dark { background: #27252B; border-color: transparent; border-top-color: #71B1A5; }
+  .testimonial-card--dark:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); }
+  .testimonial-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; color: rgba(113, 177, 165, 0.20); font-size: 5rem; line-height: 1; position: absolute; top: -4px; left: 20px; user-select: none; pointer-events: none; }
+  .testimonial-quote--dark { color: rgba(113, 177, 165, 0.12); }
+
+  /* Mariposa Animada 3D */
+  .scene-container { perspective: 800px; perspective-origin: 50% 50%; }
+  .butterfly-wrapper { @apply relative flex items-center justify-center w-[30px] h-[30px]; transform-style: preserve-3d; }
+  .butterfly-3d { animation: hoverButterfly 250ms cubic-bezier(.48,.01,.54,1) infinite; animation-direction: alternate; animation-fill-mode: reverse; @apply relative w-[30px]; transform-style: preserve-3d; transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateY(0px); }
+  .butterfly-3d::before { content: ''; @apply block absolute w-5 h-[110px] top-[-15px] left-1/2 -ml-2.5 rounded-full z-[2]; background: #1d1a1f; transform: rotateY(100deg); }
+  .shadow-3d { animation: shadowButterfly 250ms cubic-bezier(.48,.01,.54,1) infinite; animation-direction: alternate; animation-fill-mode: reverse; @apply block absolute w-[100px] h-[12px] rounded-full opacity-[0.07]; background: #27252B; transform-origin: 50% 50%; transform: translateX(-20px) translateY(120px); }
+  .wing-3d { @apply block absolute top-0 bg-[#888] opacity-85; }
+  .wing-3d:first-child { animation: leftFlap 250ms cubic-bezier(.48,.01,.54,1) infinite; animation-direction: alternate; animation-fill-mode: reverse; @apply w-px h-px left-0 z-[3]; transform: rotateY(-20deg); transform-origin: 700% 50%; }
+  .wing-3d:last-child { animation: rightFlap 250ms cubic-bezier(.48,.01,.54,1) infinite; animation-direction: alternate; animation-fill-mode: reverse; @apply w-px h-px right-0 z-[1]; transform: rotateY(200deg); }
+  .wing-3d .bit-3d { @apply bg-[#71B1A5]; }
+  .wing-3d .bit-3d::after { @apply bg-[#8ec4bc]; }
+  .wing-3d .bit-3d, .wing-3d .bit-3d::after { @apply absolute top-0 right-0 rounded-full overflow-hidden; transform-origin: 100% 50%; }
+  .wing-3d .bit-3d:first-child { @apply w-[130px] h-[70px] top-[15px] text-center; transform: rotateZ(40deg); }
+  .wing-3d .bit-3d:first-child::after { content: ''; @apply inline-block w-[100px] h-[60px] top-[5px] left-[-30px]; }
+  .wing-3d .bit-3d:last-child { @apply w-[100px] h-[55px]; transform: rotateZ(-40deg); }
+  .wing-3d .bit-3d:last-child::after { content: ''; @apply inline-block w-[60px] h-[45px] top-[5px] left-[-24px] z-[1]; }
+}
+
+/* ──────────────────────────────────────────────────────────
+   @keyframes globales
+   ────────────────────────────────────────────────────────── */
+@keyframes heroFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 0.9; transform: scaleY(1.1); } }
+@keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes marquee-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+@keyframes hoverButterfly { 0% { transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateZ(0px); } 100% { transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateZ(-6px); } }
+@keyframes shadowButterfly { 0% { transform: translateX(-20px) translateY(120px) scale(1, 1); } 100% { transform: translateX(-20px) translateY(120px) scale(1.15, 1.15); } }
+@keyframes leftFlap { 0% { transform: rotateY(-20deg); } 100% { transform: rotateY(90deg); } }
+@keyframes rightFlap { 0% { transform: rotateY(200deg); } 100% { transform: rotateY(90deg); } }
+
+/* ──────────────────────────────────────────────────────────
+   Galería y Lightbox del Local
+   ────────────────────────────────────────────────────────── */
+.gallery-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; } }
+.gallery-item { position: relative; aspect-ratio: 4 / 3; overflow: hidden; cursor: zoom-in; display: block; border: none; padding: 0; background: #27252B; }
+.gallery-overlay { position: absolute; inset: 0; background: rgba(39, 37, 43, 0); display: flex; align-items: center; justify-content: center; transition: background 0.4s ease; }
+.gallery-item:hover .gallery-overlay { background: rgba(39, 37, 43, 0.45); }
+.gallery-overlay svg { opacity: 0; transform: scale(0.85); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.gallery-item:hover .gallery-overlay svg { opacity: 1; transform: scale(1); }
+
+.lightbox-backdrop { position: fixed; inset: 0; background: rgba(13, 12, 15, 0.96); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; animation: fadeIn 0.25s ease; }
+.lightbox-img-wrap { max-width: min(90vw, 1100px); max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.lightbox-img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 2px; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7); }
+.lightbox-caption { color: rgba(255,255,255,0.45); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+.lightbox-close { position: absolute; top: 20px; right: 24px; color: rgba(255,255,255,0.6); background: none; border: none; cursor: pointer; padding: 8px; transition: color 0.2s; z-index: 10; }
+.lightbox-close:hover { color: #fff; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); cursor: pointer; padding: 14px; transition: background 0.2s, color 0.2s; z-index: 10; }
+.lightbox-nav:hover { background: rgba(113, 177, 165, 0.25); color: #fff; }
+.lightbox-nav--prev { left: 20px; }
+.lightbox-nav--next { right: 20px; }
+.lightbox-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.35); font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; }
+
+/* ──────────────────────────────────────────────────────────
+   NUEVO SISTEMA CORRECTOR: Layout Dinámico de Páginas Interiores y Mariposa
+   ────────────────────────────────────────────────────────── */
+.page-hero-root { 
+  display: flex; 
+  flex-direction: column; 
+  position: relative;
+  overflow: hidden;
+  width: 100%; 
+  background-color: #F5F2EE; 
+}
+
+/* En escritorio las dos columnas se acoplan y se estiran simétricamente */
+@media (min-width: 768px) { 
+  .page-hero-root { 
+    flex-direction: row; 
+    align-items: stretch; /* Obliga a igualar alturas según el texto */
+    min-height: 540px; 
+  } 
+}
+
+/* Contenedor Izquierdo del Texto */
+.page-hero-panel-left { 
+  position: relative; 
+  width: 100%; 
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 768px) { 
+  .page-hero-panel-left { 
+    width: 50%; 
+    flex-shrink: 0;
+  } 
+}
+
+/* Contenedor Derecho del Minihero (Imagen) */
+.page-hero-panel-right { 
+  position: relative; 
+  width: 100%;
+  overflow: hidden; 
+}
+@media (min-width: 768px) { 
+  .page-hero-panel-right { 
+    width: 50%; 
+    flex-shrink: 0;
+  } 
+  
+  /* Blindaje total para que la imagen no colapse y se adapte como un guante */
+  .page-hero-panel-right img,
+  .page-hero-panel-right :deep(img) {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+}
+
+/* Soporte y comportamiento mobile fluido en superposición */
+@media (max-width: 767px) {
+  .page-hero-root {
+    min-height: 480px;
+  }
+  .page-hero-panel-left {
+    background-color: rgba(245, 242, 238, 0.78) !important;
+    backdrop-filter: blur(12px);
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+  .page-hero-panel-right {
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+  .page-hero-panel-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Posicionamiento de la Mariposa en páginas interiores */
+@media (max-width: 767px) { .page-hero-butterfly { top: 24px; right: 32px; transform: scale(0.5) rotate(0deg); } }
+@media (min-width: 768px) { .page-hero-butterfly { bottom: 20%; right: 12%; transform: scale(0.8) rotate(0deg); } }
+
+/* Transiciones de Página SPA sin flashazos */
+.page-enter-from, .page-leave-to { opacity: 0; }
+.page-enter-active, .page-leave-active { transition: opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1); }
+.page-leave-active { position: absolute; top: 0; left: 0; width: 100%; }
+
+/* Revelado progresivo de contenido al entrar en el viewport */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Accesibilidad y Reducción de Movimiento
+   ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-item, .scroll-line, .marquee-track, .butterfly-3d, .shadow-3d, .wing-3d, .page-hero-butterfly,
+  .reveal-on-scroll, .reveal-on-scroll.is-revealed {
+    animation: none !important; transform: none !important; transition: none !important; opacity: 1 !important;
+  }
+}
